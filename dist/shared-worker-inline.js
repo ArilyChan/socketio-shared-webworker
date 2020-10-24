@@ -3,7 +3,7 @@
 const SharedWorker = () => {
     const log = console.log.bind(console)
 
-    log('Loading shared worker', self.name)
+    log('Loading shared worker', self.name, self.options)
 
     try {
         importScripts(self.name + 'socket.io/socket.io.js')

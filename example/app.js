@@ -2,9 +2,11 @@
 
 const wio = require('../src/socket.io-worker')
 
-const ws = wio('http://localhost:3000/')
+const ws = wio('http://localhost:3000/',{
+    path: '/Radio'
+})
 //const workerType = confirm('Use SharedWorker? (Will use Worker if no)') ? SharedWorker : Worker
-//ws.setWorkerType(workerType)
+// ws.setWorkerType(Worker)
 ws.start()
 console.log('connecting...')
 
