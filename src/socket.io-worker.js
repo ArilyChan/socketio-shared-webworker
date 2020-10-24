@@ -9,24 +9,27 @@ class SharedWorkerSocketIO {
     WorkerType = global.SharedWorker || global.Worker
     worker = null
     workerUri = null
+    options = null
     socketUri = null
     events = new EventEmitter()
     socket = null
 
-    constructor(socketUri) {
-        this.log('SharedWorkerSocketIO ', socketUri)
+    constructor(socketUri, options) {
+        this.log('SharedWorkerSocketIO ', socketUri, options)
         this.socketUri = socketUri
+        this.options = options
     }
 
     startSocketIo() {
-        this.socket = io(this.socketUri)
+        this.socket = io(this.socketUri, this.options)
     }
 
     startWorker() {
         const workerUri = this.getWorkerUri()
         this.log('Starting Worker', this.WorkerType, workerUri)
         this.worker = new this.WorkerType(workerUri, {
-            name: this.socketUri
+            name: this.socketUri,
+            options: this.options
         })
         const port = this.worker.port || this.worker
         port.onmessage = event => {
