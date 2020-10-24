@@ -118,5 +118,4 @@ class SharedWorkerSocketIO {
 SharedWorkerSocketIO.prototype.log = console.log.bind(console)
 const exportFunction = uri => new SharedWorkerSocketIO(uri)
 global.wio = exportFunction
-// module.exports = exportFunction
-export default exportFunction
+module.exports = exportFunction
